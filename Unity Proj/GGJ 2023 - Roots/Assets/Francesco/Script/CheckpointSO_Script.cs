@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Checkpoint_SO", menuName = "Scriptable Objects/")]
-public class CheckpointSO_Script : MonoBehaviour
+[CreateAssetMenu(fileName = "Checkpoint_SO", menuName = "Scriptable Objects/Checkpoint")]
+public class CheckpointSO_Script : ScriptableObject
 {
-    int currentCheckpoint;
+    [SerializeField, Min(0)] int currentCheckpoint;
 
 
     public int GetCurrentCheckpointNumber()
