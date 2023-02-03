@@ -3,7 +3,8 @@ guid: 767be74035f216b46a281030e5a59e25
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - checkpointScriptableObj: {fileID: 11400000, guid: 37871d09abd23c34499f59e08a12308e, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

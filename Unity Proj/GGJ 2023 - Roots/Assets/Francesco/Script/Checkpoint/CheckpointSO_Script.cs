@@ -8,11 +8,13 @@ public class CheckpointSO_Script : ScriptableObject
     [SerializeField, Min(0)] int currentCheckpoint;
 
 
+    //Funzione Get (prende il checkpoint)
     public int GetCurrentCheckpointNumber()
     {
         return currentCheckpoint;
     }
 
+    //Funzione Set (imposta il checkpoint)
     public void SetCurrentCheckpointNumber(int newCheckpoint)
     {
         currentCheckpoint = newCheckpoint;

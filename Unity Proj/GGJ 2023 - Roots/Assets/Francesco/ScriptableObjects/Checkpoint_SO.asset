@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d862dcabe035746a64a61217610167, type: 3}
   m_Name: Checkpoint_SO
   m_EditorClassIdentifier: 
+  currentCheckpoint: 0
