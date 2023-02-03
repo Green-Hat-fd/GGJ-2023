@@ -34,11 +34,11 @@ public class Player : MonoBehaviour
         }
             if(moveInput>0) //Cambia la direzione dello sprite per il movimento laterale verso destra
             {
-                controller.transform.localScale= new Vector3(1,1,1);
+                GetComponent<SpriteRenderer>().flipX = false;
             }
               else if(moveInput<0) //Cambia la direzione dello sprite per il movimento laterale verso sinistra
             {
-                controller.transform.localScale= new Vector3(-1,1,1);
+                GetComponent<SpriteRenderer>().flipX = true;
             }
     }
 }
