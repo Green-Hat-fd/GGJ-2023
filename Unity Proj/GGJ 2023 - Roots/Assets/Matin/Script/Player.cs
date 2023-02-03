@@ -9,8 +9,8 @@ public class Player : MonoBehaviour
     public float playerSpeed;
     public float jumpHeight;
     float moveInput;
-    public Transform groundCheck;
-    public LayerMask ground;
+    public Transform groundCheck; //Creare collegamento con l'EmptyObject "GroundChecker" dall'inspector di Unity.
+    public LayerMask ground; //Selezionare Layer "Ground" assegnato a tutte le piattaforme percorribili.
 
     void Start()
     {
@@ -27,15 +27,16 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        //Codice che permette il salto, nel caso in cui il giocatore si trovasse in una superfice taggata come "Ground".
          if(Input.GetKeyDown(KeyCode.W) && groundedPlayer)
         {
             controller.velocity= Vector2.up*jumpHeight;
         }
-            if(moveInput>0) //Movimento laterale verso destra
+            if(moveInput>0) //Cambia la direzione dello sprite per il movimento laterale verso destra
             {
                 controller.transform.localScale= new Vector3(1,1,1);
             }
-              else if(moveInput<0) //Movimento laterale verso sinistra
+              else if(moveInput<0) //Cambia la direzione dello sprite per il movimento laterale verso sinistra
             {
                 controller.transform.localScale= new Vector3(-1,1,1);
             }
