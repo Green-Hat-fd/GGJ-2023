@@ -53,7 +53,7 @@ public class GoombaBehaviour : MonoBehaviour
             GetComponentInChildren<StompDamage>().damage = 0;
         }
 
-        if (Morto)
+        if(Morto)
             gameObject.SetActive(false);
     }
 
