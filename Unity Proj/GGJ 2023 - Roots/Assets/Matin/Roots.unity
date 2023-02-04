@@ -223,8 +223,8 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
+  m_UpdateMethod: 0
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
@@ -277,11 +277,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: dfd6f518720e88a4fbce8bbba7a94b3b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1284263661
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -326,6 +326,8 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
+  VitaGiocatore: 5
+  Morto: 0
 --- !u!212 &1284263663
 SpriteRenderer:
   m_ObjectHideFlags: 0
