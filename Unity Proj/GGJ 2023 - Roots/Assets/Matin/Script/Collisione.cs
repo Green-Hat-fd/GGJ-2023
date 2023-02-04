@@ -7,7 +7,7 @@ public class Collisione : MonoBehaviour
     public bool IsGrounded;
    void OnTriggerStay2D(Collider2D coll)
    {
-        if(coll.gameObject.tag=="Ground")
+        if(coll.gameObject.layer==3)
         {
             IsGrounded=true;
         }
@@ -15,7 +15,7 @@ public class Collisione : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D coll)
    {
-        if(coll.gameObject.tag=="Ground")
+        if(coll.gameObject.layer==3)
         {
             IsGrounded=false;
         }
