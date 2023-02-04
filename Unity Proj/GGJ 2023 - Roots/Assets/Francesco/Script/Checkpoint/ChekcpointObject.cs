@@ -5,13 +5,13 @@ using UnityEngine;
 public class ChekcpointObject : MonoBehaviour
 {
     [SerializeField] int number;
-    [SerializeField] CheckpointSO_Script checkpointScriptableObj;
+    [SerializeField] CheckpointSO_Script checkpointScrObj;
 
 
     private void Update()
     {
         //Controlla se il checkpoint attivo è questo
-        if(checkpointScriptableObj.GetCurrentCheckpointNumber() == number)
+        if(checkpointScrObj.GetCurrentCheckpointNumber() == number)
         {
             /*
              * SISTEMARE: torna allo stato "attivo"/luminoso
@@ -30,10 +30,10 @@ public class ChekcpointObject : MonoBehaviour
         //Controlla che sia il giocatore a collidere & che non l'ha già preso
         if (other.gameObject.CompareTag("Player")
              &&
-            checkpointScriptableObj.GetCurrentCheckpointNumber() == number)
+            checkpointScrObj.GetCurrentCheckpointNumber() == number)
         {
             //Imposta il checkpoint con questo
-            checkpointScriptableObj.SetCurrentCheckpointNumber(number);
+            checkpointScrObj.SetCurrentCheckpointNumber(number);
         }
     }
 }
