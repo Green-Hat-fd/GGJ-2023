@@ -12,10 +12,13 @@ public class Player : MonoBehaviour
     float moveInput;
     public Transform groundCheck; //Creare collegamento con l'EmptyObject "GroundChecker" dall'inspector di Unity.
     public LayerMask ground; //Selezionare Layer "Ground" assegnato a tutte le piattaforme percorribili.
+    public CheckpointSO_Script checkpointSO;
     public float tempoAspettareDopoMorte = 2f;
     public float tempoTrascorsoDopoMorte;
-    public CheckpointSO_Script checkpointSO;
     public bool isTastoAzionePremuto;
+    public float invincibilitaSecTot = 10f;
+    public float invincibilitaSec;
+    public bool sonoInvincibile;
 
     public Slider sliderVita;
 
@@ -36,8 +39,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        isTastoAzionePremuto = Input.GetKeyDown(KeyCode.E);
+
         //Quando muore
-        if(GetComponent<Stats>().morto)
+        if (GetComponent<Stats>().morto)
         {
             //Rende inattivo per poco il giocatore
             GetComponent<SpriteRenderer>().enabled = false;
@@ -60,7 +65,7 @@ public class Player : MonoBehaviour
                 tempoTrascorsoDopoMorte += Time.deltaTime;
             }
         }
-        else  //Resto dei comandi (se non � morto)
+        else  //Resto dei comandi (se non e' morto)
         {
             //Codice che permette il salto, nel caso in cui il giocatore si trovasse in una superfice taggata come "Ground".
             if ((Input.GetKeyDown(KeyCode.W) && groundedPlayer || Input.GetKeyDown(KeyCode.Space)) && groundedPlayer)
@@ -71,21 +76,43 @@ public class Player : MonoBehaviour
 
             if (moveInput > 0) //Cambia la direzione dello sprite per il movimento laterale verso destra
             {
-                GetComponent<SpriteRenderer>().flipX = true;
+                GetComponent<SpriteRenderer>().flipX = false;
             }
             else if (moveInput < 0) //Cambia la direzione dello sprite per il movimento laterale verso sinistra
             {
-                GetComponent<SpriteRenderer>().flipX = false;
+                GetComponent<SpriteRenderer>().flipX = true;
             }   
         }
 
-        if(transform.position.y <= -100f)
+        GetComponent<Stats>().vita = Mathf.Clamp(GetComponent<Stats>().vita, -1, 5);
+
+        if(transform.position.y <= -1000f)
         {
             GetComponent<Stats>().TogliVita(100);
         }
 
-        sliderVita.value = GetComponent<Stats>().vita;
+        if (sonoInvincibile)
+        {
+            if(invincibilitaSec >= invincibilitaSecTot)
+            {
+                //Quando torna a prendere danno
+                invincibilitaSec = 0;
+                sonoInvincibile = false;
+                GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            else
+            {
+                //Quando diventa invincibile
+                invincibilitaSec += Time.deltaTime;
+                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .65f);
+            }
+        }
 
-        isTastoAzionePremuto = Input.GetKeyDown(KeyCode.E);
+        sliderVita.value = GetComponent<Stats>().vita;
+    }
+
+    public bool PossoRecuperareVitaDalCespuglio()
+    {
+        return isTastoAzionePremuto  &&  GetComponent<Stats>().vita < 5;
     }
 }
