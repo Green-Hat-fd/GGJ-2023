@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     float moveInput;
     public Transform groundCheck; //Creare collegamento con l'EmptyObject "GroundChecker" dall'inspector di Unity.
     public LayerMask ground; //Selezionare Layer "Ground" assegnato a tutte le piattaforme percorribili.
+    public int VitaGiocatore = 5;
+    public bool Morto = false;
 
     void Start()
     {
@@ -18,11 +20,10 @@ public class Player : MonoBehaviour
     }
 
     void FixedUpdate()
-    { 
+    {
         moveInput=Input.GetAxis("Horizontal");
         controller.velocity= new Vector2(playerSpeed*moveInput, controller.velocity.y);
         groundedPlayer=groundCheck.gameObject.GetComponent<Collisione>().IsGrounded;
-
     }
 
     void Update()
@@ -40,5 +41,9 @@ public class Player : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().flipX = true;
             }
+        if(VitaGiocatore<=0)
+        {
+            Morto= true;
+        }
     }
 }
