@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class CollisioneGoomba : MonoBehaviour
 {
-    public bool AttritoMuro = false;
-    public LayerMask ground;
+    public bool checkMuro = false;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.gameObject.layer==ground)
+        if(other.gameObject.layer == 3) //Se il layer è il Ground
         {
-            AttritoMuro=true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other) 
-    {
-        if(other.gameObject.layer==ground)
-        {
-            AttritoMuro=false;
+            checkMuro=true;
         }
     }
 }

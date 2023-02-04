@@ -8,11 +8,12 @@ public class GoombaBehaviour : MonoBehaviour
     private bool grounded;
     public float GoombaSpeed;
     public Transform groundCheck;
+    public Transform muroCheck;
+    public Transform vuotoCheck;
     public LayerMask ground;
     public int VitaGoomba = 1;
     public bool Morto = false;
-    public bool Destra = true;
-    public Transform muroCheck;
+    public bool vadoADestra = true;
 
     // Start is called before the first frame update
     void Start()
@@ -23,18 +24,23 @@ public class GoombaBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         grounded=groundCheck.gameObject.GetComponent<Collisione>().IsGrounded;
-        if(muroCheck.gameObject.GetComponent<CollisioneGoomba>().AttritoMuro)
+        
+        if(muroCheck.gameObject.GetComponent<CollisioneGoomba>().checkMuro || vuotoCheck.gameObject.GetComponent<VuotoGoomba>().checkVuotoSotto)
         {
-            Destra = !Destra;
-            muroCheck.gameObject.GetComponent<CollisioneGoomba>().AttritoMuro = false;
+            vadoADestra = !vadoADestra;
+            muroCheck.gameObject.GetComponent<CollisioneGoomba>().checkMuro = false;
+            vuotoCheck.gameObject.GetComponent<VuotoGoomba>().checkVuotoSotto = false;
         }
-        if(Destra && grounded)
+        
+        if(vadoADestra && grounded)
         {
-            goomba.velocity=new Vector2(GoombaSpeed, goomba.velocity.y);
+            goomba.velocity = new Vector2(GoombaSpeed, goomba.velocity.y);
+            GetComponent<SpriteRenderer>().flipX = false;
         }
         else
         {
-            goomba.velocity=new Vector2(-GoombaSpeed, goomba.velocity.y);
+            goomba.velocity = new Vector2(-GoombaSpeed, goomba.velocity.y);
+            GetComponent<SpriteRenderer>().flipX = true;
         }
     }
 

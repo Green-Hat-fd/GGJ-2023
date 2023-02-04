@@ -777,7 +777,7 @@ GameObject:
   - component: {fileID: 2104347272}
   - component: {fileID: 2104347274}
   - component: {fileID: 2104347273}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,14 +848,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goomba
       objectReference: {fileID: 0}
-    - target: {fileID: 1511161831655835013, guid: f4cae4a02947d194190488e079beecc7, type: 3}
-      propertyPath: Morto
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1511161831655835013, guid: f4cae4a02947d194190488e079beecc7, type: 3}
-      propertyPath: GoombaSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 1511161831655835014, guid: f4cae4a02947d194190488e079beecc7, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -899,10 +891,6 @@ PrefabInstance:
     - target: {fileID: 1511161831655835014, guid: f4cae4a02947d194190488e079beecc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7375029697137906255, guid: f4cae4a02947d194190488e079beecc7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4cae4a02947d194190488e079beecc7, type: 3}
