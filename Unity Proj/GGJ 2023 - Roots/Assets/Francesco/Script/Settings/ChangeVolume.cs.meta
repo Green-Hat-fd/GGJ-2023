@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 4eb75516a8485da4aa67f0ebddb287ea
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - settings_ScrObj: {fileID: 11400000, guid: 7e4c5d205f21aa048b5a70b2808b807a, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Codice che permette il salto, nel caso in cui il giocatore si trovasse in una superfice taggata come "Ground".
-         if(Input.GetKeyDown(KeyCode.W) && groundedPlayer)
+         if(Input.GetKeyDown(KeyCode.W) && groundedPlayer || Input.GetKeyDown(KeyCode.Space) && groundedPlayer)
         {
             controller.velocity= Vector2.up*jumpHeight;
         }
@@ -45,5 +45,11 @@ public class Player : MonoBehaviour
         {
             Morto= true;
         }
+    }
+
+    public void CambiaVita(int daSommare)
+    {
+        VitaGiocatore += daSommare;
+        print(VitaGiocatore);
     }
 }
