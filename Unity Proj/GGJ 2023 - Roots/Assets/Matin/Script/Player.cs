@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     public float tempoAspettareDopoMorte = 2f;
     public float tempoTrascorsoDopoMorte;
     public CheckpointSO_Script checkpointSO;
+
+    public Slider sliderVita;
 
     void Start()
     {
@@ -35,8 +38,9 @@ public class Player : MonoBehaviour
         //Quando muore
         if(GetComponent<Stats>().morto)
         {
-            //Nasconde tutto
+            //Rende inattivo per poco il giocatore
             GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 
             if(tempoTrascorsoDopoMorte >= tempoAspettareDopoMorte)
             {
@@ -44,6 +48,7 @@ public class Player : MonoBehaviour
                 transform.position = checkpointSO.GetCurrentCheckpointPosition();
                 GetComponent<Stats>().RitornoInVita(5);
                 GetComponent<SpriteRenderer>().enabled = true;
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                 
                 tempoTrascorsoDopoMorte = 0;
             }
@@ -52,7 +57,7 @@ public class Player : MonoBehaviour
                 tempoTrascorsoDopoMorte += Time.deltaTime;
             }
         }
-        else  //Resto dei comandi
+        else  //Resto dei comandi (se non è morto)
         {
             //Codice che permette il salto, nel caso in cui il giocatore si trovasse in una superfice taggata come "Ground".
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && groundedPlayer)
@@ -74,5 +79,7 @@ public class Player : MonoBehaviour
         {
             GetComponent<Stats>().TogliVita(100);
         }
+
+        sliderVita.value = GetComponent<Stats>().vita;
     }
 }
