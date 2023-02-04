@@ -8,7 +8,7 @@ public class RiceveDanno : MonoBehaviour
     public string TagDaChiRiceveDanno;
     public int DannoInflitto = 1;
     public bool ilGiocatSalta = true;
-    public float grandezzaSalto = 300f;
+    public int PotenzaSalto;
     
     
     //In questo caso:
@@ -26,7 +26,7 @@ public class RiceveDanno : MonoBehaviour
                 Rigidbody2D playerRb = coll.GetComponentInParent<Rigidbody2D>();
 
                 playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
-                playerRb.AddForce(Vector2.up * grandezzaSalto);
+                playerRb.AddForce(Vector2.up * PotenzaSalto);
             }
         }
    }
