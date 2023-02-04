@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 
+            //TODO: metti il suono della morte del giocatore
+
             if(tempoTrascorsoDopoMorte >= tempoAspettareDopoMorte)
             {
                 //Riprende il gioco dall'ultimo checkpoint
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.W) && groundedPlayer || Input.GetKeyDown(KeyCode.Space)) && groundedPlayer)
             {
                 controller.velocity = Vector2.up * jumpHeight;
+                //TODO: Aggiungere suono salto
             }
 
             if (moveInput > 0) //Cambia la direzione dello sprite per il movimento laterale verso destra

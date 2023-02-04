@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CespugliRecuperaVita : MonoBehaviour
 {
+    public Sprite cespuglioSpento;
     public GameObject tasto;
+    public int vitaDaRecuperare = 1;
     bool spento = false;
 
     private void Update()
@@ -15,17 +17,18 @@ public class CespugliRecuperaVita : MonoBehaviour
              * TODO: Il cespuglio che cambia
              */
             GetComponent<SpriteRenderer>().color = Color.grey;
+            GetComponent<SpriteRenderer>().sprite = cespuglioSpento;
             tasto.SetActive(false);
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && spento == false)
+        if (collision.gameObject.CompareTag("Player") && !spento)
         {
             if (collision.GetComponent<Player>().isTastoAzionePremuto)
             {
-                collision.GetComponent<Stats>().AggiungiVita(1);
+                collision.GetComponent<Stats>().AggiungiVita(vitaDaRecuperare);
                 spento = true;
             }
 
