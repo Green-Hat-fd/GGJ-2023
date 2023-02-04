@@ -46,4 +46,10 @@ public class Player : MonoBehaviour
             Morto= true;
         }
     }
+
+    public void CambiaVita(int daSommare)
+    {
+        VitaGiocatore += daSommare;
+        print(VitaGiocatore);
+    }
 }

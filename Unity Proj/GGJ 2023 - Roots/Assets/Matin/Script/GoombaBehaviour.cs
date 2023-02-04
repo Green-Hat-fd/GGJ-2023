@@ -47,6 +47,21 @@ public class GoombaBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(GetComponentInChildren<StompDamage>().damage > 0)
+        {
+            VitaGoomba -= GetComponentInChildren<StompDamage>().damage;
+            GetComponentInChildren<StompDamage>().damage = 0;
+        }
+
+        if (Morto)
+            gameObject.SetActive(false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Player>().CambiaVita(-1);
+        }
     }
 }
