@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class Player : MonoBehaviour
     public float jumpHeight;
     float moveInput;
     public Transform groundCheck; //Creare collegamento con l'EmptyObject "GroundChecker" dall'inspector di Unity.
-    public Transform DanneggiatoPlayer;
     public LayerMask ground; //Selezionare Layer "Ground" assegnato a tutte le piattaforme percorribili.
-    public int VitaGiocatore = 5;
-    public bool Morto = false;
+    public float tempoAspettareDopoMorte = 2f;
+    public float tempoTrascorsoDopoMorte;
+    public CheckpointSO_Script checkpointSO;
+
+    public Slider sliderVita;
 
     void Start()
     {
@@ -22,40 +25,61 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        moveInput=Input.GetAxis("Horizontal");
-        controller.velocity= new Vector2(playerSpeed*moveInput, controller.velocity.y);
-        groundedPlayer=groundCheck.gameObject.GetComponent<Collisione>().IsGrounded;
+        if(GetComponent<Stats>().morto == false)
+        {
+            moveInput=Input.GetAxis("Horizontal");
+            controller.velocity= new Vector2(playerSpeed*moveInput, controller.velocity.y);
+            groundedPlayer=groundCheck.gameObject.GetComponent<Collisione>().IsGrounded;
+        }
     }
 
     void Update()
     {
-        //Codice che permette il salto, nel caso in cui il giocatore si trovasse in una superfice taggata come "Ground".
-         if(Input.GetKeyDown(KeyCode.W) && groundedPlayer || Input.GetKeyDown(KeyCode.Space) && groundedPlayer)
+        //Quando muore
+        if(GetComponent<Stats>().morto)
         {
-            controller.velocity= Vector2.up*jumpHeight;
-        }
-            if(moveInput>0) //Cambia la direzione dello sprite per il movimento laterale verso destra
+            //Rende inattivo per poco il giocatore
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+
+            if(tempoTrascorsoDopoMorte >= tempoAspettareDopoMorte)
             {
-                GetComponent<SpriteRenderer>().flipX = false;
+                //Riprende il gioco dall'ultimo checkpoint
+                transform.position = checkpointSO.GetCurrentCheckpointPosition();
+                GetComponent<Stats>().RitornoInVita(5);
+                GetComponent<SpriteRenderer>().enabled = true;
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                
+                tempoTrascorsoDopoMorte = 0;
             }
-              else if(moveInput<0) //Cambia la direzione dello sprite per il movimento laterale verso sinistra
+            else
+            {
+                tempoTrascorsoDopoMorte += Time.deltaTime;
+            }
+        }
+        else  //Resto dei comandi (se non è morto)
+        {
+            //Codice che permette il salto, nel caso in cui il giocatore si trovasse in una superfice taggata come "Ground".
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && groundedPlayer)
+            {
+                controller.velocity = Vector2.up * jumpHeight;
+            }
+
+            if (moveInput > 0) //Cambia la direzione dello sprite per il movimento laterale verso destra
             {
                 GetComponent<SpriteRenderer>().flipX = true;
             }
-        if(VitaGiocatore<=0)
-        {
-            Morto= true;
+            else if (moveInput < 0) //Cambia la direzione dello sprite per il movimento laterale verso sinistra
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }   
         }
 
-            if(gameObject.GetComponent<RiceveDanno>().Colpito==true)
-            {
-                VitaGiocatore= VitaGiocatore - gameObject.GetComponent<RiceveDanno>().DannoInflitto;
-            }
-    }
+        if(transform.position.y <= -100f)
+        {
+            GetComponent<Stats>().TogliVita(100);
+        }
 
-    public void CambiaVita(int daSommare)
-    {
-        VitaGiocatore += daSommare;
-        print(VitaGiocatore);
+        sliderVita.value = GetComponent<Stats>().vita;
     }
 }

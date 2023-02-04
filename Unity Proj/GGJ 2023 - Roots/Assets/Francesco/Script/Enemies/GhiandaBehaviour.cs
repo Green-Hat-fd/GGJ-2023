@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovimProiettile : MonoBehaviour
+public class GhiandaBehaviour : MonoBehaviour
 {
-    public float velocity = 7.5f;
     float tempoTrascorso;
-    public float secMaxProiett = 10f;
+    public float secMaxGhianda = 10f;
+
 
     void Update()
     {
-        transform.position += transform.right * velocity * Time.deltaTime;
-
         tempoTrascorso += Time.deltaTime;
-        if (tempoTrascorso >= secMaxProiett)
+
+        if (tempoTrascorso >= secMaxGhianda)
         {
             Destroy(gameObject);
         }
@@ -23,6 +22,7 @@ public class MovimProiettile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            collision.gameObject.GetComponent<Stats>().TogliVita(1);
             Destroy(gameObject);
         }
     }

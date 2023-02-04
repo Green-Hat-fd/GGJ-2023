@@ -8,7 +8,7 @@ public class CollisioneGoomba : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.gameObject.layer == 3) //Se il layer è il Ground
+        if(other.gameObject.layer == 3 || other.gameObject.tag== "Player") //Se il layer è il Ground o il giocatore
         {
             checkMuro=true;
         }

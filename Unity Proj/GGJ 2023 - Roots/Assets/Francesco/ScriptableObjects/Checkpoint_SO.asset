@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Checkpoint_SO
   m_EditorClassIdentifier: 
   currentCheckpoint: 0
+  currentCheckpointPosition: {x: -11.2313595, y: -0.3996574}

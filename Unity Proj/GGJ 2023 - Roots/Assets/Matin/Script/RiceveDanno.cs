@@ -5,21 +5,28 @@ using UnityEngine;
 public class RiceveDanno : MonoBehaviour
 {
     public bool Colpito = false;
-    public string TagDanno;
+    public string TagDaChiRiceveDanno;
     public int DannoInflitto = 1;
-void OnTriggerStay2D(Collider2D coll)
+    public bool ilGiocatSalta = true;
+    
+    
+    //In questo caso:
+    //"coll" sarebbe chi ha inflitto il danno
+    //mentre chi riceve il danno sarebbe il parent a cui sono attaccato
+    void OnTriggerEnter2D(Collider2D coll)
    {
-        if(coll.gameObject.tag==TagDanno)
+        if(coll.gameObject.tag==TagDaChiRiceveDanno)
         {
-            Colpito=true;
-        }
-   }
+            GetComponentInParent<Stats>().TogliVita(DannoInflitto);
 
-    void OnTriggerExit2D(Collider2D coll)
-   {
-        if(coll.gameObject.tag==TagDanno)
-        {
-            Colpito=false;
+            //Se mi ha fatto danno il giocatore
+            if(coll.gameObject.CompareTag("Player") && ilGiocatSalta)
+            {
+                Rigidbody2D playerRb = coll.GetComponentInParent<Rigidbody2D>();
+
+                playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
+                playerRb.AddForce(Vector2.up * 300f);
+            }
         }
    }
 }
