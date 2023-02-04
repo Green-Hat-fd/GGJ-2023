@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Nemico
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float jumpHeight;
     float moveInput;
     public Transform groundCheck; //Creare collegamento con l'EmptyObject "GroundChecker" dall'inspector di Unity.
+    public Transform DanneggiatoPlayer;
     public LayerMask ground; //Selezionare Layer "Ground" assegnato a tutte le piattaforme percorribili.
     public int VitaGiocatore = 5;
     public bool Morto = false;
@@ -45,5 +46,10 @@ public class Player : MonoBehaviour
         {
             Morto= true;
         }
+
+            if(gameObject.GetComponent<RiceveDanno>().Colpito==true)
+            {
+                VitaGiocatore= VitaGiocatore - gameObject.GetComponent<RiceveDanno>().DannoInflitto;
+            }
     }
 }

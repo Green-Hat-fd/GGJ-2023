@@ -10,6 +10,7 @@ public class GoombaBehaviour : MonoBehaviour
     public Transform groundCheck;
     public Transform muroCheck;
     public Transform vuotoCheck;
+    public Transform Danneggiato;
     public LayerMask ground;
     public int VitaGoomba = 1;
     public bool Morto = false;
@@ -42,11 +43,29 @@ public class GoombaBehaviour : MonoBehaviour
             goomba.velocity = new Vector2(-GoombaSpeed, goomba.velocity.y);
             GetComponent<SpriteRenderer>().flipX = true;
         }
+
+        if(Danneggiato.gameObject.GetComponent<RiceveDanno>().Colpito==true)
+        {
+            VitaGoomba = VitaGoomba - 1;
+        }
+
+        if(VitaGoomba<=0)
+        {
+            Morto= true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void LateUpdate()
+    {
+                if(Morto==true)
+        {
+            Destroy(gameObject);
+        }
     }
 }
