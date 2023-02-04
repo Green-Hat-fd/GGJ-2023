@@ -24,6 +24,8 @@ public class ChekcpointObject : MonoBehaviour
              * TODO: torna allo stato "attivo"/luminoso
              */
             GetComponent<SpriteRenderer>().color = Color.red;
+
+            //TODO: metti il suono del checkpoint che si attiva
         }
         else
         {
