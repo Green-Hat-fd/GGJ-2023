@@ -52,4 +52,10 @@ public class Player : MonoBehaviour
                 VitaGiocatore= VitaGiocatore - gameObject.GetComponent<RiceveDanno>().DannoInflitto;
             }
     }
+
+    public void CambiaVita(int daSommare)
+    {
+        VitaGiocatore += daSommare;
+        print(VitaGiocatore);
+    }
 }
