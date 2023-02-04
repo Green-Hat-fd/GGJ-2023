@@ -58,10 +58,10 @@ public class Player : MonoBehaviour
                 tempoTrascorsoDopoMorte += Time.deltaTime;
             }
         }
-        else  //Resto dei comandi (se non è morto)
+        else  //Resto dei comandi (se non ï¿½ morto)
         {
             //Codice che permette il salto, nel caso in cui il giocatore si trovasse in una superfice taggata come "Ground".
-            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && groundedPlayer)
+            if ((Input.GetKeyDown(KeyCode.W) && groundedPlayer || Input.GetKeyDown(KeyCode.Space)) && groundedPlayer)
             {
                 controller.velocity = Vector2.up * jumpHeight;
             }

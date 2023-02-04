@@ -1000,6 +1000,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6593409867262512913, guid: f4cae4a02947d194190488e079beecc7, type: 3}
+      propertyPath: m_Size.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6593409867262512913, guid: f4cae4a02947d194190488e079beecc7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8609741627239487124, guid: f4cae4a02947d194190488e079beecc7, type: 3}
       propertyPath: m_Name
       value: GoombaTest
