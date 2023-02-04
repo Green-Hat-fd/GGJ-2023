@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/z_Other/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Matin/Tutorial.unity
+    guid: d8027ffcb6310eb45a53476edb6fe5e5
+  - enabled: 1
+    path: Assets/Matin/Boss_finale.unity
+    guid: 5902cd9f5c270d3459ec41e01b1fc851
   m_configObjects: {}
