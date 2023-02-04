@@ -10,10 +10,10 @@ public class Player : MonoBehaviour
     public float jumpHeight;
     float moveInput;
     public Transform groundCheck; //Creare collegamento con l'EmptyObject "GroundChecker" dall'inspector di Unity.
-    public Transform DanneggiatoPlayer;
     public LayerMask ground; //Selezionare Layer "Ground" assegnato a tutte le piattaforme percorribili.
-    public int VitaGiocatore = 5;
-    public bool Morto = false;
+    public float tempoAspettareDopoMorte = 2f;
+    public float tempoTrascorsoDopoMorte;
+    public CheckpointSO_Script checkpointSO;
 
     void Start()
     {
@@ -22,40 +22,57 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        moveInput=Input.GetAxis("Horizontal");
-        controller.velocity= new Vector2(playerSpeed*moveInput, controller.velocity.y);
-        groundedPlayer=groundCheck.gameObject.GetComponent<Collisione>().IsGrounded;
+        if(GetComponent<Stats>().morto == false)
+        {
+            moveInput=Input.GetAxis("Horizontal");
+            controller.velocity= new Vector2(playerSpeed*moveInput, controller.velocity.y);
+            groundedPlayer=groundCheck.gameObject.GetComponent<Collisione>().IsGrounded;
+        }
     }
 
     void Update()
     {
-        //Codice che permette il salto, nel caso in cui il giocatore si trovasse in una superfice taggata come "Ground".
-         if(Input.GetKeyDown(KeyCode.W) && groundedPlayer || Input.GetKeyDown(KeyCode.Space) && groundedPlayer)
+        //Quando muore
+        if(GetComponent<Stats>().morto)
         {
-            controller.velocity= Vector2.up*jumpHeight;
-        }
-            if(moveInput>0) //Cambia la direzione dello sprite per il movimento laterale verso destra
+            //Nasconde tutto
+            GetComponent<SpriteRenderer>().enabled = false;
+
+            if(tempoTrascorsoDopoMorte >= tempoAspettareDopoMorte)
             {
-                GetComponent<SpriteRenderer>().flipX = false;
+                //Riprende il gioco dall'ultimo checkpoint
+                transform.position = checkpointSO.GetCurrentCheckpointPosition();
+                GetComponent<Stats>().RitornoInVita(5);
+                GetComponent<SpriteRenderer>().enabled = true;
+                
+                tempoTrascorsoDopoMorte = 0;
             }
-              else if(moveInput<0) //Cambia la direzione dello sprite per il movimento laterale verso sinistra
+            else
+            {
+                tempoTrascorsoDopoMorte += Time.deltaTime;
+            }
+        }
+        else  //Resto dei comandi
+        {
+            //Codice che permette il salto, nel caso in cui il giocatore si trovasse in una superfice taggata come "Ground".
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && groundedPlayer)
+            {
+                controller.velocity = Vector2.up * jumpHeight;
+            }
+
+            if (moveInput > 0) //Cambia la direzione dello sprite per il movimento laterale verso destra
             {
                 GetComponent<SpriteRenderer>().flipX = true;
             }
-        if(VitaGiocatore<=0)
-        {
-            Morto= true;
+            else if (moveInput < 0) //Cambia la direzione dello sprite per il movimento laterale verso sinistra
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }   
         }
 
-            if(gameObject.GetComponent<RiceveDanno>().Colpito==true)
-            {
-                VitaGiocatore= VitaGiocatore - gameObject.GetComponent<RiceveDanno>().DannoInflitto;
-            }
-    }
-
-    public void CambiaVita(int daSommare)
-    {
-        VitaGiocatore += daSommare;
-        print(VitaGiocatore);
+        if(transform.position.y <= -100f)
+        {
+            GetComponent<Stats>().TogliVita(100);
+        }
     }
 }

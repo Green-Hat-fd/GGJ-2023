@@ -12,8 +12,6 @@ public class GoombaBehaviour : MonoBehaviour
     public Transform vuotoCheck;
     public Transform Danneggiato;
     public LayerMask ground;
-    public int VitaGoomba = 1;
-    public bool Morto = false;
     public bool vadoADestra = true;
 
     // Start is called before the first frame update
@@ -36,49 +34,36 @@ public class GoombaBehaviour : MonoBehaviour
         if(vadoADestra && grounded)
         {
             goomba.velocity = new Vector2(GoombaSpeed, goomba.velocity.y);
-            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
             goomba.velocity = new Vector2(-GoombaSpeed, goomba.velocity.y);
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
-
-        if(Danneggiato.gameObject.GetComponent<RiceveDanno>().Colpito==true)
-        {
-            VitaGoomba = VitaGoomba - 1;
-        }
-
-        if(VitaGoomba<=0)
-        {
-            Morto= true;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GetComponentInChildren<StompDamage>().damage > 0)
-        {
-            VitaGoomba -= GetComponentInChildren<StompDamage>().damage;
-            GetComponentInChildren<StompDamage>().damage = 0;
-        }
 
-        if(Morto)
-            gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        vadoADestra = !vadoADestra;
+        muroCheck.gameObject.GetComponent<CollisioneGoomba>().checkMuro = false;
+        vuotoCheck.gameObject.GetComponent<VuotoGoomba>().checkVuotoSotto = false;
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Player>().CambiaVita(-1);
+            collision.gameObject.GetComponent<Stats>().TogliVita(1);
         }
     }
 
     private void LateUpdate()
     {
-                if(Morto==true)
+        if(GetComponent<Stats>().morto==true)
         {
             Destroy(gameObject);
         }

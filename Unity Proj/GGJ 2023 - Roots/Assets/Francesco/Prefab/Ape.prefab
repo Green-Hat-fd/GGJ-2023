@@ -1,5 +1,75 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &107433369885568389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4216810451477750525}
+  - component: {fileID: 3851697733209480958}
+  - component: {fileID: 2981165361136848453}
+  m_Layer: 0
+  m_Name: HitboxPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4216810451477750525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107433369885568389}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.66, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6377579866016907332}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &3851697733209480958
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107433369885568389}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.75, y: 0.1}
+  - {x: 0.75, y: 0.1}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!114 &2981165361136848453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107433369885568389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f30977dcacd0f49b7c7b3b445f2dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Colpito: 0
+  TagDaChiRiceveDanno: Player
+  DannoInflitto: 1
+  ilGiocatSalta: 1
 --- !u!1 &2810312037654944944
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,6 +111,7 @@ GameObject:
   - component: {fileID: 6377579866016907332}
   - component: {fileID: 6377579866016907335}
   - component: {fileID: 3494322894890654557}
+  - component: {fileID: 8031546941373477048}
   m_Layer: 0
   m_Name: Ape
   m_TagString: Untagged
@@ -60,6 +131,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5592779499867890485}
+  - {fileID: 4216810451477750525}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -133,3 +205,18 @@ MonoBehaviour:
   maxTempoAttacco: 4
   proiettile: {fileID: 643367060510472202, guid: fdaed87a97d55a346a7259e727b365f0, type: 3}
   origineProiett: {fileID: 5592779499867890485}
+  Danneggiato: {fileID: 107433369885568389}
+--- !u!114 &8031546941373477048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377579866016907334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c9f7e2dbb60364082ccf8f0218927e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vita: 2
+  morto: 0

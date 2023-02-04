@@ -23,7 +23,6 @@ public class MovimProiettile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //SISTEMA: Danno al giocatore
             Destroy(gameObject);
         }
     }

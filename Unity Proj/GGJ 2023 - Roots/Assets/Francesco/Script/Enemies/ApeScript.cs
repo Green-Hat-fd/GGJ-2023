@@ -14,6 +14,7 @@ public class ApeScript : MonoBehaviour
 
     public GameObject proiettile;
     public Transform origineProiett;
+    public GameObject Danneggiato;
 
 
     private void Start()
@@ -27,15 +28,17 @@ public class ApeScript : MonoBehaviour
 
         if (tempoPassato >= Random.Range(minTempoAttacco, maxTempoAttacco))
         {
-            /*
-             * ATTACCO
-             */
             Instantiate(proiettile, origineProiett.position, transform.rotation);
             tempoPassato = 0;
         }
         else
         {
             tempoPassato += Time.deltaTime;
+        }
+
+        if (GetComponent<Stats>().morto)
+        {
+            Destroy(gameObject);
         }
     }
 }

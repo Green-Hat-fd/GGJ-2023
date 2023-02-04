@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 122536760407233342}
   m_Layer: 0
   m_Name: Hitboxdanno
-  m_TagString: Untagged
+  m_TagString: Nemico
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,10 +41,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0021061897, y: -0.08424318}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2359266, y: 0.83151364}
+  m_Size: {x: 1.2, y: 0.9}
   m_EdgeRadius: 0
 --- !u!1 &7737266803127537580
 GameObject:
@@ -66,7 +66,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2523438593851270197}
-  - component: {fileID: 5184642914914936426}
+  - component: {fileID: 4779214616441345955}
   - component: {fileID: 3543656542913449190}
   m_Layer: 0
   m_Name: HitboxPlayer
@@ -89,8 +89,8 @@ Transform:
   m_Father: {fileID: 8609741627239487151}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &5184642914914936426
-BoxCollider2D:
+--- !u!68 &4779214616441345955
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,19 +102,15 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.005105734, y: 0.45950848}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.76514006, y: 0.2443639}
+  m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.4, y: 0.55}
+  - {x: 0.4, y: 0.55}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!114 &3543656542913449190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,8 +124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Colpito: 0
-  TagDanno: 
+  TagDaChiRiceveDanno: Player
   DannoInflitto: 1
+  ilGiocatSalta: 1
 --- !u!1 &8609741626798989412
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,9 +309,10 @@ GameObject:
   - component: {fileID: 8609741627239487145}
   - component: {fileID: 8609741627239487146}
   - component: {fileID: 8609741627239487147}
+  - component: {fileID: 5383646672008700516}
   m_Layer: 0
   m_Name: Goomba
-  m_TagString: Untagged
+  m_TagString: Nemico
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +376,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 350ab8decea94964881a9970587818ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -427,7 +425,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.7896, y: 1.0816}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -456,9 +454,21 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
-  VitaGoomba: 1
-  Morto: 0
   vadoADestra: 1
+--- !u!114 &5383646672008700516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8609741627239487124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c9f7e2dbb60364082ccf8f0218927e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vita: 1
+  morto: 0
 --- !u!1 &8609741628196336005
 GameObject:
   m_ObjectHideFlags: 0
