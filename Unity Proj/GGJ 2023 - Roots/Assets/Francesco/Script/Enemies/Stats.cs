@@ -18,6 +18,11 @@ public class Stats : MonoBehaviour
         vita -= daTogliere;
     }
 
+    public void AggiungiVita(int daAggiungere)
+    {
+        vita += daAggiungere;
+    }
+
     public void RitornoInVita(int newVita)
     {
         vita = newVita;

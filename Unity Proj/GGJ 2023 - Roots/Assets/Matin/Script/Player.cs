@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float tempoAspettareDopoMorte = 2f;
     public float tempoTrascorsoDopoMorte;
     public CheckpointSO_Script checkpointSO;
+    public bool isTastoAzionePremuto;
 
     public Slider sliderVita;
 
@@ -81,5 +82,7 @@ public class Player : MonoBehaviour
         }
 
         sliderVita.value = GetComponent<Stats>().vita;
+
+        isTastoAzionePremuto = Input.GetKeyDown(KeyCode.E);
     }
 }

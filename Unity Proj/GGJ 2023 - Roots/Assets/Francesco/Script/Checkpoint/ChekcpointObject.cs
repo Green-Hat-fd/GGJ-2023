@@ -21,14 +21,14 @@ public class ChekcpointObject : MonoBehaviour
         if(checkpointScrObj.GetCurrentCheckpointNumber() == number)
         {
             /*
-             * SISTEMARE: torna allo stato "attivo"/luminoso
+             * TODO: torna allo stato "attivo"/luminoso
              */
             GetComponent<SpriteRenderer>().color = Color.red;
         }
         else
         {
             /*
-             * SISTEMARE: torna allo stato "non attivo"/spento
+             * TODO: torna allo stato "non attivo"/spento
              */
             GetComponent<SpriteRenderer>().color = Color.white;
         }

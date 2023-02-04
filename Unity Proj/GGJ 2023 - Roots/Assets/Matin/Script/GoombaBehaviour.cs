@@ -31,7 +31,7 @@ public class GoombaBehaviour : MonoBehaviour
             vuotoCheck.gameObject.GetComponent<VuotoGoomba>().checkVuotoSotto = false;
         }
         
-        if(vadoADestra && grounded)
+        if(vadoADestra)
         {
             goomba.velocity = new Vector2(GoombaSpeed, goomba.velocity.y);
             GetComponent<SpriteRenderer>().flipX = true;
@@ -51,10 +51,6 @@ public class GoombaBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        vadoADestra = !vadoADestra;
-        muroCheck.gameObject.GetComponent<CollisioneGoomba>().checkMuro = false;
-        vuotoCheck.gameObject.GetComponent<VuotoGoomba>().checkVuotoSotto = false;
-
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Stats>().TogliVita(1);

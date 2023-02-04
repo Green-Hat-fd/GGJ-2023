@@ -5,7 +5,7 @@ using UnityEngine;
 public class GhiandaBehaviour : MonoBehaviour
 {
     float tempoTrascorso;
-    public float secMaxGhianda = 10f;
+    public float secMaxGhianda = 2f;
 
 
     void Update()
@@ -23,6 +23,14 @@ public class GhiandaBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Stats>().TogliVita(1);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
             Destroy(gameObject);
         }
     }
