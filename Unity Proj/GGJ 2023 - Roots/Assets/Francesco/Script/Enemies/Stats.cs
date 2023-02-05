@@ -24,7 +24,7 @@ public class Stats : MonoBehaviour
                 //TODO: metti il suono del danno del giocatore
                 break;
 
-            case "Enemy":
+            default:
                 vita -= daTogliere;
                 
                 if(vita <= 0)
