@@ -1074,6 +1074,10 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2493741918282278102, guid: 3901f2344ce60de4c8264f347ebf1d14, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8970610245261506667, guid: 3901f2344ce60de4c8264f347ebf1d14, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2535,7 +2539,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b7231776a0fb845499bc827dc6dde30f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6527,6 +6531,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.7924528
       objectReference: {fileID: 0}
+    - target: {fileID: 456912174542973074, guid: bad0f61207ff94d4e85cb86c5a6b27bf, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3101521846874126475, guid: bad0f61207ff94d4e85cb86c5a6b27bf, type: 3}
       propertyPath: m_Name
       value: Piattaforme (27)
@@ -7314,7 +7322,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 678624784f7b412448466685b94869cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
