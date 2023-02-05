@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class FruttoInvincibilita : MonoBehaviour
 {
+    public Sprite cespuglioSpento;
     public GameObject tasto;
+    bool spento = false;
+
+
+    private void Update()
+    {
+        if (spento)
+        {
+            GetComponent<SpriteRenderer>().sprite = cespuglioSpento;
+            tasto.SetActive(false);
+        }
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -14,7 +26,7 @@ public class FruttoInvincibilita : MonoBehaviour
             {
                 collision.GetComponent<Player>().sonoInvincibile = true;
                 collision.GetComponent<Player>().invincibilitaSec = 0;
-                Destroy(gameObject);
+                spento = true;
             }
 
             tasto.SetActive(true);

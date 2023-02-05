@@ -15,27 +15,25 @@ public class Stats : MonoBehaviour
 
     public void TogliVita(int daTogliere)
     {
-        switch(gameObject.tag)
+        if(gameObject.CompareTag("Player"))
         {
-            case "Player":
-                if(!GetComponent<Player>().sonoInvincibile)
-                    vita -= daTogliere;
-                
-                //TODO: metti il suono del danno del giocatore
-                break;
-
-            case "Enemy":
+            if(!GetComponent<Player>().sonoInvincibile)
                 vita -= daTogliere;
                 
-                if(vita <= 0)
-                {
-                    //TODO: metti il suono della morte del nemico
-                }
-                else
-                {
-                    //TODO: metti il suono del danno del nemico
-                }
-                break;
+            //TODO: metti il suono del danno del giocatore
+        }
+        else
+        {
+            vita -= daTogliere;
+                
+            if(vita <= 0)
+            {
+                //TODO: metti il suono della morte del nemico
+            }
+            else
+            {
+                //TODO: metti il suono del danno del nemico
+            }
         }
     }
 
