@@ -7,6 +7,7 @@ public class ChekcpointObject : MonoBehaviour
     [SerializeField] int number;
     [SerializeField] CheckpointSO_Script checkpointScrObj;
     [SerializeField] GameObject lucette;
+    [SerializeField] AudioSource suonoAttivazione;
 
 
     private void Awake()
@@ -24,7 +25,7 @@ public class ChekcpointObject : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.white;
             lucette.SetActive(true);
 
-            //TODO: metti il suono del checkpoint che si attiva
+            suonoAttivazione.Play();
         }
         else
         {

@@ -25,7 +25,7 @@ public class RiceveDanno : MonoBehaviour
             {
                 Rigidbody2D playerRb = coll.GetComponentInParent<Rigidbody2D>();
 
-                playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
+                playerRb.velocity = Vector2.right * playerRb.velocity.x;
                 playerRb.AddForce(Vector2.up * PotenzaSalto);
             }
         }
