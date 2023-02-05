@@ -15,15 +15,18 @@ public class Stats : MonoBehaviour
 
     public void TogliVita(int daTogliere)
     {
-        vita -= daTogliere;
-
         switch(gameObject.tag)
         {
             case "Player":
+                if(!GetComponent<Player>().sonoInvincibile)
+                    vita -= daTogliere;
+                
                 //TODO: metti il suono del danno del giocatore
                 break;
 
             case "Enemy":
+                vita -= daTogliere;
+                
                 if(vita <= 0)
                 {
                     //TODO: metti il suono della morte del nemico

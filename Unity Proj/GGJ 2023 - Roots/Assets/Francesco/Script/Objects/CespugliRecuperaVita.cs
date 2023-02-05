@@ -26,7 +26,7 @@ public class CespugliRecuperaVita : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !spento)
         {
-            if (collision.GetComponent<Player>().isTastoAzionePremuto)
+            if (collision.GetComponent<Player>().PossoRecuperareVitaDalCespuglio())
             {
                 collision.GetComponent<Stats>().AggiungiVita(vitaDaRecuperare);
                 spento = true;
