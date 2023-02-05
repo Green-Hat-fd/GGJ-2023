@@ -14,9 +14,6 @@ public class FungoDannoso : MonoBehaviour
     {
         if (spento)
         {
-            /*
-             * TODO: Il fungo spento
-             */
             GetComponent<SpriteRenderer>().color = Color.grey;
             //GetComponent<SpriteRenderer>().sprite = fungoSpento;
         }

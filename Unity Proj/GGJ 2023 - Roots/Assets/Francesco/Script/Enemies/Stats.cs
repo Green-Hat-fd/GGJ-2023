@@ -6,6 +6,8 @@ public class Stats : MonoBehaviour
 {
     public int vita;
     public bool morto;
+    public AudioSource sfxNemicoDanno;
+    public AudioSource sfxNemicoMorto;
 
 
     private void Update()
@@ -18,10 +20,15 @@ public class Stats : MonoBehaviour
         switch(gameObject.tag)
         {
             case "Player":
-                if(!GetComponent<Player>().sonoInvincibile)
+                if (!GetComponent<Player>().sonoInvincibile)
+                {
                     vita -= daTogliere;
-                
-                //TODO: metti il suono del danno del giocatore
+                    GetComponent<Player>().sonoInvincibile = true;
+                    GetComponent<Player>().invincibilitaSec = 0;
+                    GetComponent<Player>().invincibilitaSecTot = 2;
+
+                    //TODO: metti il suono del danno del giocatore
+                }
                 break;
 
             default:
@@ -29,11 +36,11 @@ public class Stats : MonoBehaviour
                 
                 if(vita <= 0)
                 {
-                    //TODO: metti il suono della morte del nemico
+                    sfxNemicoMorto.Play();
                 }
                 else
                 {
-                    //TODO: metti il suono del danno del nemico
+                    sfxNemicoDanno.Play();
                 }
                 break;
         }
@@ -45,7 +52,7 @@ public class Stats : MonoBehaviour
 
         if (gameObject.CompareTag("Player"))
         {
-            //TODO: metti il suono di aggiungere la vita
+            GetComponent<Player>().sfxRecuperaVita.Play();
         }
     }
 
@@ -56,7 +63,7 @@ public class Stats : MonoBehaviour
 
         if (gameObject.CompareTag("Player"))
         {
-            //TODO: metti il suono del restart dal checkpoint
+            GetComponent<Player>().sfxTornoAlCheckpoint.Play();
         }
     }
 }

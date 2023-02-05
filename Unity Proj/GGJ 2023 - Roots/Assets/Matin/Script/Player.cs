@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour
     public AudioSource sfxSalto;
     public AudioSource sfxDanno;
     public AudioSource sfxMorte;
+    public AudioSource sfxRecuperaVita;
+    public AudioSource sfxTornoAlCheckpoint;
 
     public GameObject menuPausa;
     public Slider sliderVita;
@@ -60,7 +63,7 @@ public class Player : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 
-            //TODO: metti il suono della morte del giocatore
+            sfxMorte.Play();
 
             if(tempoTrascorsoDopoMorte >= tempoAspettareDopoMorte)
             {
@@ -83,7 +86,7 @@ public class Player : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.W) && groundedPlayer || Input.GetKeyDown(KeyCode.Space)) && groundedPlayer)
             {
                 controller.velocity = Vector2.up * jumpHeight;
-                //TODO: Aggiungere suono salto
+                sfxSalto.Play();
             }
 
             if (moveInput > 0) //Cambia la direzione dello sprite per il movimento laterale verso destra
@@ -109,6 +112,7 @@ public class Player : MonoBehaviour
             {
                 //Quando torna a prendere danno
                 invincibilitaSec = 0;
+                invincibilitaSecTot = 10;
                 sonoInvincibile = false;
                 GetComponent<SpriteRenderer>().color = Color.white;
             }
@@ -125,18 +129,11 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
             InvertiInPausa();
-
-            if (inPausa)
-            {
-                Time.timeScale = 0;
-                menuPausa.SetActive(true);
-            }
-            else
-            {
-                Time.timeScale = 1;
-                menuPausa.SetActive(false);
-            }
         }
+
+        //Pausa
+        Time.timeScale = inPausa ? 0 : 1;
+        menuPausa.SetActive(inPausa);
     }
 
     public bool PossoRecuperareVitaDalCespuglio()
@@ -147,5 +144,19 @@ public class Player : MonoBehaviour
     public void InvertiInPausa()
     {
         inPausa = !inPausa;
+    }
+
+    public void RestartScena()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+        menuPausa.SetActive(false);
+    }
+
+    public void TornaAlMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+        menuPausa.SetActive(false);
     }
 }
