@@ -26,22 +26,21 @@ public class Stats : MonoBehaviour
                     GetComponent<Player>().sonoInvincibile = true;
                     GetComponent<Player>().invincibilitaSec = 0;
                     GetComponent<Player>().invincibilitaSecTot = 2;
-
-                    //TODO: metti il suono del danno del giocatore
+                    //GetComponent<Player>().sfxDanno.Play();
                 }
                 break;
 
             default:
                 vita -= daTogliere;
                 
-                if(vita <= 0)
+                /*if(vita <= 0)
                 {
                     sfxNemicoMorto.Play();
                 }
                 else
                 {
                     sfxNemicoDanno.Play();
-                }
+                }*/
                 break;
         }
     }
@@ -52,7 +51,7 @@ public class Stats : MonoBehaviour
 
         if (gameObject.CompareTag("Player"))
         {
-            GetComponent<Player>().sfxRecuperaVita.Play();
+            //GetComponent<Player>().sfxRecuperaVita.Play();
         }
     }
 

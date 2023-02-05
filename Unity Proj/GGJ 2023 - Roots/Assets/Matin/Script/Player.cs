@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.W) && groundedPlayer || Input.GetKeyDown(KeyCode.Space)) && groundedPlayer)
             {
                 controller.velocity = Vector2.up * jumpHeight;
-                //sfxSalto.Play();
+                sfxSalto.Play();
             }
 
             if (moveInput > 0) //Cambia la direzione dello sprite per il movimento laterale verso destra
