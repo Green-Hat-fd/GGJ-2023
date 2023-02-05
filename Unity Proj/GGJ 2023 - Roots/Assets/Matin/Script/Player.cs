@@ -13,14 +13,23 @@ public class Player : MonoBehaviour
     public Transform groundCheck; //Creare collegamento con l'EmptyObject "GroundChecker" dall'inspector di Unity.
     public LayerMask ground; //Selezionare Layer "Ground" assegnato a tutte le piattaforme percorribili.
     public CheckpointSO_Script checkpointSO;
+    
     public float tempoAspettareDopoMorte = 2f;
     public float tempoTrascorsoDopoMorte;
+    
     public bool isTastoAzionePremuto;
+    
     public float invincibilitaSecTot = 10f;
     public float invincibilitaSec;
     public bool sonoInvincibile;
 
+    public AudioSource sfxSalto;
+    public AudioSource sfxDanno;
+    public AudioSource sfxMorte;
+
     public Slider sliderVita;
+
+
 
     void Start()
     {

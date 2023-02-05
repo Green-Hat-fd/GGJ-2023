@@ -6,15 +6,13 @@ using UnityEngine.SceneManagement;
 public class CambiaScena : MonoBehaviour
 {
     public int scenaInCuiAndare = 1;
-    public bool vaiAllaScenaSuccessiva;
-    public bool vaiAllaScenaPrecedente;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //SceneManager.LoadScene();
+            SceneManager.LoadScene(scenaInCuiAndare);
         }
     }
 }
