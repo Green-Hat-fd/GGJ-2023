@@ -6,6 +6,7 @@ public class ChekcpointObject : MonoBehaviour
 {
     [SerializeField] int number;
     [SerializeField] CheckpointSO_Script checkpointScrObj;
+    [SerializeField] GameObject lucette;
 
 
     private void Awake()
@@ -20,19 +21,15 @@ public class ChekcpointObject : MonoBehaviour
         //Controlla se il checkpoint attivo è questo
         if(checkpointScrObj.GetCurrentCheckpointNumber() == number)
         {
-            /*
-             * TODO: torna allo stato "attivo"/luminoso
-             */
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().color = Color.white;
+            lucette.SetActive(true);
 
             //TODO: metti il suono del checkpoint che si attiva
         }
         else
         {
-            /*
-             * TODO: torna allo stato "non attivo"/spento
-             */
-            GetComponent<SpriteRenderer>().color = Color.white;
+            GetComponent<SpriteRenderer>().color = Color.gray;
+            lucette.SetActive(false);
         }
     }
 

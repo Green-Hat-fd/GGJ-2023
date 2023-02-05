@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float tempoTrascorsoDopoMorte;
     
     public bool isTastoAzionePremuto;
+    bool inPausa = false;
     
     public float invincibilitaSecTot = 10f;
     public float invincibilitaSec;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     public AudioSource sfxDanno;
     public AudioSource sfxMorte;
 
+    public GameObject menuPausa;
     public Slider sliderVita;
 
 
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
         isTastoAzionePremuto = Input.GetKeyDown(KeyCode.E);
 
         //Quando muore
@@ -118,10 +121,31 @@ public class Player : MonoBehaviour
         }
 
         sliderVita.value = GetComponent<Stats>().vita;
+
+        if(Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            InvertiInPausa();
+
+            if (inPausa)
+            {
+                Time.timeScale = 0;
+                menuPausa.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                menuPausa.SetActive(false);
+            }
+        }
     }
 
     public bool PossoRecuperareVitaDalCespuglio()
     {
         return isTastoAzionePremuto  &&  GetComponent<Stats>().vita < 5;
+    }
+
+    public void InvertiInPausa()
+    {
+        inPausa = !inPausa;
     }
 }

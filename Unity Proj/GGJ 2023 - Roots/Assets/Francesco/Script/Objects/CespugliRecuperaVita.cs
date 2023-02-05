@@ -13,10 +13,6 @@ public class CespugliRecuperaVita : MonoBehaviour
     {
         if (spento)
         {
-            /*
-             * TODO: Il cespuglio che cambia
-             */
-            GetComponent<SpriteRenderer>().color = Color.grey;
             GetComponent<SpriteRenderer>().sprite = cespuglioSpento;
             tasto.SetActive(false);
         }

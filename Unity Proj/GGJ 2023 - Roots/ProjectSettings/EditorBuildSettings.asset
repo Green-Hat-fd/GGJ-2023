@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Matin/Boss_finale.unity
     guid: 5902cd9f5c270d3459ec41e01b1fc851
+  - enabled: 1
+    path: Assets/Francesco/Scenes/Vittoria.unity
+    guid: 1f3e85138e8ed6542a8d0a1f85b744a9
   m_configObjects: {}
