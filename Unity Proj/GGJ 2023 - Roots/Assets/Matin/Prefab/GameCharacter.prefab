@@ -468,9 +468,12 @@ MonoBehaviour:
   tempoAspettareDopoMorte: 2
   tempoTrascorsoDopoMorte: 0
   isTastoAzionePremuto: 0
-  invincibilitaSecTot: 10
+  invincibilitaSecTot: 15
   invincibilitaSec: 0
   sonoInvincibile: 0
+  sfxSalto: {fileID: 0}
+  sfxDanno: {fileID: 0}
+  sfxMorte: {fileID: 0}
   sliderVita: {fileID: 1706066482114370971}
 --- !u!114 &5241321875274514031
 MonoBehaviour:

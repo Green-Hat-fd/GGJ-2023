@@ -205,4 +205,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d084a792c161734782b5e0756ff9849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cespuglioSpento: {fileID: 21300000, guid: a8759b5e0298d1345953b2801eaba8c6, type: 3}
   tasto: {fileID: 2117443382720962074}
